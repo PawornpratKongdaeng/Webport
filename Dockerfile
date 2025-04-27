@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm install
+RUN npm install --production=false \
+    && npm cache clean --force
 
 # Copy the rest of the application
 COPY . .
@@ -22,7 +23,9 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
 # Build the application
-RUN npm run build
+RUN npm run build \
+    && rm -rf node_modules/.cache \
+    && npm cache clean --force
 
 # Stage 2: Serve the app with Nginx
 FROM nginx:alpine

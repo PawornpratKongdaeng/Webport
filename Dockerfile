@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:20-slim AS builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm install --omit=dev --prefer-offline --no-audit --no-optional
+RUN npm install --omit=dev --prefer-offline --no-audit --legacy-peer-deps
 
 # Copy the rest of the application
 COPY . .

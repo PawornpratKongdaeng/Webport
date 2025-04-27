@@ -1,7 +1,14 @@
 # Stage 1: Build the application
-FROM node:20 AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies first (for better caching)
 COPY package*.json ./

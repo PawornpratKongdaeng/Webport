@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm install --omit=dev --prefer-offline --no-audit
+RUN npm install --omit=dev --prefer-offline --no-audit --no-optional
 
 # Copy the rest of the application
 COPY . .
@@ -33,6 +33,9 @@ COPY --from=builder /app/.next/static /usr/share/nginx/html/.next/static
 
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Remove unnecessary files
+RUN rm -rf /usr/share/nginx/html/.next/cache
 
 EXPOSE 80
 

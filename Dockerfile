@@ -12,7 +12,7 @@ RUN apk add --no-cache \
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm install --omit=dev --prefer-offline --no-audit --legacy-peer-deps
+RUN npm install --prefer-offline --no-audit --legacy-peer-deps
 
 # Copy the rest of the application
 COPY . .

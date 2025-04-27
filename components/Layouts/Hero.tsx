@@ -9,25 +9,22 @@ import Link from "next/link";
 const words = `Hello My name is Nawin`;
 const words2 = `I'm frontend developer`;
 
-export function Hero() {
+const Hero = () => {
   return (
-    <div className="h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center font-lato">
-      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-
-      <Boxes />
-      <TextGenerateEffect
-        className="text-center mt-2 text-white relative z-20 text-4xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg"
-        words={words}
-      />
-      <TextGenerateEffect
-        className="text-center mt-2 text-indigo-200 relative z-20 text-xl md:text-2xl font-semibold italic"
-        words={words2}
-      />
-      <Link href="/portfolio" className="z-30">
-      <ButtonsCard>
-        Let's see my work!
-      </ButtonsCard>
-    </Link>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+      <div className="text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          Welcome to My Portfolio
+        </h1>
+        <p className="text-xl md:text-2xl mb-8">
+          I build amazing web applications
+        </p>
+        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          Get Started
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default Hero;
